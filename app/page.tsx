@@ -4,18 +4,19 @@ import { WalletConnect } from "./components/wallet-connect"
 import { SensorFeed } from "./components/sensor-feed"
 import { AnunnakiSymbols } from "./components/anunnaki-symbols"
 import { Card } from "@/components/ui/card"
+import { Web3Button } from "@thirdweb-dev/react"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-emerald-950 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-emerald-950 relative overflow-hidden font-sans">
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent,rgba(34,197,94,0.1),transparent)]" />
 
-      {/* Anunnaki symbols and mystical elements */}
+      {/* Anunnaki symbols */}
       <AnunnakiSymbols />
 
-      {/* Animated forest silhouette */}
+      {/* Forest silhouette */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent">
         <svg className="absolute bottom-0 w-full h-full" viewBox="0 0 1200 200" preserveAspectRatio="none">
           <path
@@ -32,15 +33,12 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-green-400 via-emerald-300 to-cyan-400 bg-clip-text text-transparent animate-pulse">
             🌲 WANDR FOREST NODE v1
           </h1>
-
-          {/* Status indicator */}
           <div className="flex items-center justify-center gap-2 mb-8">
             <div className="w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
             <span className="text-green-300 text-sm font-mono">WiFi • AID • NODES • DECENTRALIZED • RESILIENT</span>
           </div>
         </div>
 
-        {/* Main content */}
         <div className="max-w-4xl mx-auto">
           {/* Description */}
           <Card className="bg-black/40 border-green-500/30 backdrop-blur-sm p-8 mb-8">
@@ -56,9 +54,27 @@ export default function Home() {
             <SensorFeed />
           </div>
 
-          {/* Connect wallet section */}
-          <div className="mb-12">
-            <WalletConnect />
+          {/* NFT Mint Section */}
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-green-400 tracking-wide mb-4">
+              🛡️ WANDR: Guardians of the Forest
+            </h2>
+            <p className="text-md text-green-200 max-w-xl mx-auto mb-6">
+              Mint your sacred Guardian NFT — protect the mesh, connect with the wild, and commemorate your place in the first forest node drop.
+            </p>
+
+            <div className="flex flex-col items-center gap-4">
+              <WalletConnect />
+              <Web3Button
+                contractAddress="0x5c523638E432aC394A573aD5fe4Bc03aacB3040d"
+                action={async (contract) => await contract.erc721.claim(1)}
+                onSuccess={() => alert("🌲 Minted! Grandma’s guardian is en route 🪶")}
+                onError={(e) => alert("⚠️ Mint failed: " + e.message)}
+                className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-lg hover:scale-105 transition-transform shadow-md"
+              >
+                🌲 Mint Guardian of Forest: Grandma One
+              </Web3Button>
+            </div>
           </div>
 
           {/* Network status */}
@@ -79,7 +95,7 @@ export default function Home() {
             </div>
           </Card>
 
-          {/* Additional forest mesh info */}
+          {/* Features */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <Card className="bg-black/40 border-green-500/30 backdrop-blur-sm p-6">
               <h3 className="text-lg font-bold text-green-300 mb-3">🔥 Firewatch Network</h3>
@@ -96,7 +112,7 @@ export default function Home() {
             <Card className="bg-black/40 border-green-500/30 backdrop-blur-sm p-6">
               <h3 className="text-lg font-bold text-green-300 mb-3">🎨 NFT Collection</h3>
               <p className="text-green-100/80 text-sm">
-                Forest Guardian NFTs coming soon - unique digital artifacts representing your connection to the mesh.
+                Forest Guardian NFTs — unique digital artifacts representing your connection to the mesh.
               </p>
             </Card>
             <Card className="bg-black/40 border-green-500/30 backdrop-blur-sm p-6">
@@ -129,7 +145,7 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* Ambient glow effects */}
+      {/* Ambient glow */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
     </div>
